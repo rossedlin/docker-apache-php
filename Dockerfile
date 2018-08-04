@@ -19,6 +19,7 @@ RUN apt-get update -y; \
 #
 # Configure
 #
+COPY public /var/www/logs
 COPY public /var/www/public
 COPY apache2/default.conf /etc/apache2/sites-enabled/000-default.conf
 RUN a2enmod rewrite;
