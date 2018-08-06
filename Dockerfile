@@ -14,7 +14,7 @@ RUN apt-get update -y; \
     apt-get install -y tzdata; \
     ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime; \
     dpkg-reconfigure --frontend noninteractive tzdata; \
-    apt-get install -y php php-common php-mbstring php-xml php-zip openssl;
+    apt-get install -y php php-mysql php-common php-mbstring php-xml php-zip openssl;
 
 #
 # Configure
