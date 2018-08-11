@@ -9,20 +9,16 @@ RUN apt-get update -y; \
 #
 # Install PHP
 #
+COPY composer-setup.php composer-setup.php
 RUN apt-get update -y; \
     export DEBIAN_FRONTEND=noninteractive; \
     apt-get install -y tzdata; \
     ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime; \
     dpkg-reconfigure --frontend noninteractive tzdata; \
     apt-get install -y curl openssl git unzip; \
-    apt-get install -y php php-cli php-mysql php-common php-mbstring php-xml php-zip; \
-    a2enmod rewrite;
-
-#
-# Install Composer
-#
-COPY composer-setup.php composer-setup.php
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    apt-get install -y php php-cli php-curl php-mysql php-common php-mbstring php-xml php-zip; \
+    a2enmod rewrite; \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer;
 
 #
 # Configure
