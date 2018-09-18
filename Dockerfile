@@ -4,7 +4,8 @@ FROM ubuntu:18.10
 # Install Apache2
 #
 RUN apt-get update -y; \
-    apt-get install apache2 -y;
+    apt-get install apache2 -y; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install PHP
@@ -18,7 +19,9 @@ RUN apt-get update -y; \
     apt-get install -y curl openssl git unzip; \
     apt-get install -y php php-cli php-curl php-mysql php-common php-mbstring php-xml php-zip; \
     a2enmod rewrite; \
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer;
+    a2enmod ssl; \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Configure
